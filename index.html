@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Interactive Flip Cards</title>
+  <style>
+    /* Global Reset & Theme */
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background-color: #0d1117; /* GitHub dark theme background */
+      color: #c9d1d9;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+      padding: 2rem;
+    }
+    h1 { margin-bottom: 2rem; color: #f0f6fc; }
+
+    /* Card Grid Setup */
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+      width: 100%;
+      max-width: 1200px;
+    }
+
+    /* Flip Card Core Logic */
+    .flip-card {
+      background-color: transparent;
+      height: 200px;
+      perspective: 1000px; /* Gives 3D depth */
+      cursor: pointer;
+    }
+    .flip-card-inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      text-align: center;
+      transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+      transform-style: preserve-3d;
+    }
+
+    /* Flip Actions (Hover on Desktop, Active class for Mobile) */
+    .flip-card:hover .flip-card-inner,
+    .flip-card.is-flipped .flip-card-inner {
+      transform: rotateY(180deg);
+    }
+
+    /* Card Sides Configuration */
+    .card-front, .card-back {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      backface-visibility: hidden; /* Hides reverse side during spin */
+      border-radius: 8px;
+      border: 1px solid #30363d;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 1.5rem;
+    }
+
+    /* Styling Individual Sides */
+    .card-front {
+      background-color: #161b22;
+      color: #58a6ff;
+    }
+    .card-back {
+      background-color: #21262d;
+      color: #79c0ff;
+      transform: rotateY(180deg);
+    }
+    p { color: #8b949e; margin-top: 0.5rem; font-size: 0.9rem; }
+  </style>
+</head>
+<body>
+
+  <h1>My Learning Cards</h1>
+
+  <div class="card-grid">
+
+    <!-- Card 1 -->
+    <div class="flip-card" onclick="this.classList.toggle('is-flipped')">
+      <div class="flip-card-inner">
+        <div class="card-front">
+          <h3>HTML</h3>
+          <p>Hover or Tap to flip</p>
+        </div>
+        <div class="card-back">
+          <h3>HyperText Markup Language</h3>
+          <p>Defines the structure of a webpage.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 2 -->
+    <div class="flip-card" onclick="this.classList.toggle('is-flipped')">
+      <div class="flip-card-inner">
+        <div class="card-front">
+          <h3>CSS</h3>
+          <p>Hover or Tap to flip</p>
+        </div>
+        <div class="card-back">
+          <h3>Cascading Style Sheets</h3>
+          <p>Controls layout, colors, and visual styles.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 3 -->
+    <div class="flip-card" onclick="this.classList.toggle('is-flipped')">
+      <div class="flip-card-inner">
+        <div class="card-front">
+          <h3>JavaScript</h3>
+          <p>Hover or Tap to flip</p>
+        </div>
+        <div class="card-back">
+          <h3>JS</h3>
+          <p>Adds behavior and interactivity to pages.</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</body>
+</html>
