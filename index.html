@@ -1,217 +1,239 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Interactive Flip Cards</title>
-  <style>
-    /* Global Reset & Theme */
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-      background-color: #FFFFFF; /* GitHub dark theme background */
-      color: #c9d1d9;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      min-height: 100vh;
-      padding: 2rem;
-    }
-    h1 { margin-bottom: 2rem; color: #c20000; }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Legal Secondary Sources</title>
+    <style>
+        /* Global Styles */
+        body {
+            background-color: #ffffff;
+            color: #333333;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            margin: 0;
+            padding: 40px 20px;
+        }
 
-    /* Card Grid Setup (Auto-wraps cards into rows) */
-    .card-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 2rem;
-      width: 100%;
-      max-width: 1200px;
-    }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
 
-    /* Flip Card Core Logic */
-    .flip-card {
-      background-color: transparent;
-      height: 200px;
-      perspective: 1000px; /* Gives 3D depth */
-      cursor: pointer;
-    }
-    .flip-card-inner {
-      position: relative;
-      width: 100%;
-      height: 100%;
-      text-align: center;
-      transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-      transform-style: preserve-3d;
-    }
+        /* Typography */
+        h1 {
+            color: #002060; /* Navy Blue */
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 40px;
+        }
 
-    /* Flip Actions (Hover on Desktop, Active class for Mobile) */
-    .flip-card:hover .flip-card-inner,
-    .flip-card.is-flipped .flip-card-inner {
-      transform: rotateY(180deg);
-    }
+        h2 {
+            color: #002060; /* Navy Blue */
+            font-size: 1.8rem;
+            border-bottom: 2px solid #002060;
+            padding-bottom: 8px;
+            margin-top: 40px;
+            margin-bottom: 24px;
+        }
 
-    /* Card Sides Configuration */
-    .card-front, .card-back {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      backface-visibility: hidden; /* Hides reverse side during spin */
-      border-radius: 8px;
-      border: 1px solid #30363d;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      padding: 1.5rem;
-    }
+        /* Grid Layout */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 24px;
+            margin-bottom: 40px;
+        }
 
-    /* Styling Individual Sides */
-    .card-front {
-      background-color: #2b6b96;
-      color: #FFFFFF;
-    }
-    .card-back {
-      background-color: #21262d;
-      color: #79c0ff;
-      transform: rotateY(180deg);
-    }
-    h3 { font-size: 1.4rem; }
-    p { color: #FFFFFF; margin-top: 0.5rem; font-size: 0.95rem; line-height: 1.4; }
-  </style>
+        /* The Flip Card Structure */
+        .flip-card {
+            background-color: transparent;
+            height: 200px;
+            perspective: 1000px; 
+            cursor: pointer;
+        }
+
+        .flip-card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+        }
+
+        .flip-card:hover .flip-card-inner {
+            transform: rotateY(180deg);
+        }
+
+        /* Card Sides */
+        .flip-card-front, .flip-card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            padding: 24px;
+            box-sizing: border-box;
+            background-color: #990000; /* Crimson */
+            color: #ffffff; /* White text */
+        }
+
+        .flip-card-back {
+            transform: rotateY(180deg);
+        }
+
+        h3 {
+            margin: 0 0 10px 0;
+            font-size: 1.4rem;
+        }
+
+        p {
+            margin: 0;
+            font-size: 1rem;
+            line-height: 1.4;
+        }
+    </style>
 </head>
 <body>
 
-  <h1>Secondary Sources</h1>
+    <div class="container">
+        <h1>Legal Secondary Sources</h1>
 
-  <div class="card-grid">
+        <!-- SECTION 1 -->
+        <h2>Getting Started</h2>
+        <div class="card-grid">
+            
+            <!-- Card 1 -->
+            <div class="flip-card">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                        <h3>Legal Encyclopedias</h3>
+                        <p>Hover for details</p>
+                    </div>
+                    <div class="flip-card-back">
+                        <p>Broad overviews of legal topics arranged alphabetically, like Am Jur or CJS.</p>
+                    </div>
+                </div>
+            </div>
 
-    <!-- Card 1 -->
-    <div class="flip-card" onclick="this.classList.toggle('is-flipped')">
-      <div class="flip-card-inner">
-        <div class="card-front">
-          <h3>Legal Dictionaries</h3>
-          <p>Tap or hover to flip</p>
+            <!-- Card 2 -->
+            <div class="flip-card">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                        <h3>Treatises</h3>
+                        <p>Hover for details</p>
+                    </div>
+                    <div class="flip-card-back">
+                        <p>In-depth, scholarly books focusing exclusively on a single area of law.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="flip-card">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                        <h3>Restatements</h3>
+                        <p>Hover for details</p>
+                    </div>
+                    <div class="flip-card-back">
+                        <p>Highly authoritative summaries of common law principles compiled by experts.</p>
+                    </div>
+                </div>
+            </div>
+
         </div>
-        <div class="card-back">
-          <h3>Card 1 Back</h3>
-          <p>This is the back details for your first card.</p>
+
+        <!-- SECTION 2 -->
+        <h2>Specialized Secondary Sources</h2>
+        <div class="card-grid">
+
+            <!-- Card 4 -->
+            <div class="flip-card">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                        <h3>Law Reviews</h3>
+                        <p>Hover for details</p>
+                    </div>
+                    <div class="flip-card-back">
+                        <p>Scholarly articles analyzing niche legal issues, published by law schools.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 5 -->
+            <div class="flip-card">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                        <h3>ALR Annotations</h3>
+                        <p>Hover for details</p>
+                    </div>
+                    <div class="flip-card-back">
+                        <p>Articles that organize and analyze cases on specific legal points across jurisdictions.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 6 -->
+            <div class="flip-card">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                        <h3>Looseleaf Services</h3>
+                        <p>Hover for details</p>
+                    </div>
+                    <div class="flip-card-back">
+                        <p>Frequently updated binders tracking volatile fields like tax or environmental law.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 7 -->
+            <div class="flip-card">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                        <h3>Form Books</h3>
+                        <p>Hover for details</p>
+                    </div>
+                    <div class="flip-card-back">
+                        <p>Collections of sample legal documents, pleadings, and transactional templates.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 8 -->
+            <div class="flip-card">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                        <h3>Practice Guides</h3>
+                        <p>Hover for details</p>
+                    </div>
+                    <div class="flip-card-back">
+                        <p>Jurisdiction-specific roadmaps explaining how to litigate or handle legal tasks.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 9 -->
+            <div class="flip-card">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                        <h3>CLE Materials</h3>
+                        <p>Hover for details</p>
+                    </div>
+                    <div class="flip-card-back">
+                        <p>Handouts and outlines from Continuing Legal Education courses for practicing attorneys.</p>
+                    </div>
+                </div>
+            </div>
+
         </div>
-      </div>
     </div>
-
-    <!-- Card 2 -->
-    <div class="flip-card" onclick="this.classList.toggle('is-flipped')">
-      <div class="flip-card-inner">
-        <div class="card-front">
-          <h3>Legal Encyclopedias</h3>
-          <p>Tap or hover to flip</p>
-        </div>
-        <div class="card-back">
-          <h3>Card 2 Back</h3>
-          <p>This is the back details for your second card.</p>
-        </div>
-      </div>
-    </div>
-
-    <!-- Card 3 -->
-    <div class="flip-card" onclick="this.classList.toggle('is-flipped')">
-      <div class="flip-card-inner">
-        <div class="card-front">
-          <h3>Treatises</h3>
-          <p>Tap or hover to flip</p>
-        </div>
-        <div class="card-back">
-          <h3>Card 3 Back</h3>
-          <p>This is the back details for your third card.</p>
-        </div>
-      </div>
-    </div>
-
-    <!-- Card 4 -->
-    <div class="flip-card" onclick="this.classList.toggle('is-flipped')">
-      <div class="flip-card-inner">
-        <div class="card-front">
-          <h3>Law Reviews and Law Journals</h3>
-          <p>Tap or hover to flip</p>
-        </div>
-        <div class="card-back">
-          <h3>Card 4 Back</h3>
-          <p>This is the back details for your fourth card.</p>
-        </div>
-      </div>
-    </div>
-
-    <!-- Card 5 -->
-    <div class="flip-card" onclick="this.classList.toggle('is-flipped')">
-      <div class="flip-card-inner">
-        <div class="card-front">
-          <h3>American Law Reports</h3>
-          <p>Tap or hover to flip</p>
-        </div>
-        <div class="card-back">
-          <h3>Card 5 Back</h3>
-          <p>This is the back details for your fifth card.</p>
-        </div>
-      </div>
-    </div>
-
-    <!-- Card 6 -->
-    <div class="flip-card" onclick="this.classList.toggle('is-flipped')">
-      <div class="flip-card-inner">
-        <div class="card-front">
-          <h3>Practice Guides</h3>
-          <p>Tap or hover to flip</p>
-        </div>
-        <div class="card-back">
-          <h3>Card 6 Back</h3>
-          <p>This is the back details for your sixth card.</p>
-        </div>
-      </div>
-    </div>
-
-    <!-- Card 7 -->
-    <div class="flip-card" onclick="this.classList.toggle('is-flipped')">
-      <div class="flip-card-inner">
-        <div class="card-front">
-          <h3>Card 7 Front</h3>
-          <p>Tap or hover to flip</p>
-        </div>
-        <div class="card-back">
-          <h3>Card 7 Back</h3>
-          <p>This is the back details for your seventh card.</p>
-        </div>
-      </div>
-    </div>
-
-    <!-- Card 8 -->
-    <div class="flip-card" onclick="this.classList.toggle('is-flipped')">
-      <div class="flip-card-inner">
-        <div class="card-front">
-          <h3>Card 8 Front</h3>
-          <p>Tap or hover to flip</p>
-        </div>
-        <div class="card-back">
-          <h3>Card 8 Back</h3>
-          <p>This is the back details for your eighth card.</p>
-        </div>
-      </div>
-    </div>
-
-    <!-- Card 9 -->
-    <div class="flip-card" onclick="this.classList.toggle('is-flipped')">
-      <div class="flip-card-inner">
-        <div class="card-front">
-          <h3>Card 9 Front</h3>
-          <p>Tap or hover to flip</p>
-        </div>
-        <div class="card-back">
-          <h3>Card 9 Back</h3>
-          <p>This is the back details for your ninth card.</p>
-        </div>
-      </div>
-    </div>
-
-  </div>
 
 </body>
 </html>
